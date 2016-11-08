@@ -15,19 +15,13 @@ scalacOptions ++= Seq(
 
 resolvers += Resolver.bintrayRepo("azavea", "geotrellis")
 
-val geotrellisVersion = "1.0.0-cd1ca27"
+lazy val root = (project in file(".")).aggregate(core, native)
 
-libraryDependencies ++= Seq(
-  "com.azavea.geotrellis" %% "geotrellis-spark" % geotrellisVersion,
-  "com.azavea.geotrellis" %% "geotrellis-accumulo" % geotrellisVersion,
-  "com.azavea.geotrellis" %% "geotrellis-geomesa" % geotrellisVersion,
-  "org.apache.spark" %% "spark-core" % "2.0.0" % "provided",
-  "org.scalatest"    %%  "scalatest" % "3.0.0" % "test"
-)
+lazy val core = (project in file("core")).
+  settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test").
+  settings(target in javah := (sourceDirectory in nativeCompile in native).value / "include").
+  dependsOn(native % Runtime)
 
-assemblyMergeStrategy in assembly := {
-  case "reference.conf" | "application.conf"            => MergeStrategy.concat
-  case "META-INF/MANIFEST.MF" | "META-INF\\MANIFEST.MF" => MergeStrategy.discard
-  case "META-INF/ECLIPSEF.RSA" | "META-INF/ECLIPSEF.SF" => MergeStrategy.discard
-  case _ => MergeStrategy.first
-}
+lazy val native = (project in file("pdal")).
+  settings(sourceDirectory in nativeCompile := sourceDirectory.value).
+  enablePlugins(JniNative)
