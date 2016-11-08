@@ -15,9 +15,15 @@ set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
 set(PROJECT_VERSION_PATCH 0)
 
-# pdal requires to use cpp11
-set(CMAKE_CXX_FLAGS "-std=c++11")
-# set(CMAKE_MACOSX_RPATH 1)
+if (APPLE)
+  set(CMAKE_MACOSX_RPATH ON)
+  SET(CMAKE_SKIP_BUILD_RPATH TRUE)
+  SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+  SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+endif ()
+
+# pdal requires to use cpp11, and a weird pdal flag to be sure that dynamic linking works
+set(CMAKE_CXX_FLAGS "-L/usr/local/opt/pdal/lib/ -std=c++11")
 
 # Setup JNI
 find_package(JNI REQUIRED)
@@ -33,8 +39,6 @@ include_directories(include)
 include_directories(${JNI_INCLUDE_DIRS})
 include_directories(/usr/local/opt/libxml2/include/libxml2)
 # include_directories(/usr/local/opt/pdal)
-
-set(CMAKE_CXX_FLAGS "-std=c++11")
 
 # Sources
 file(GLOB LIB_SRC
