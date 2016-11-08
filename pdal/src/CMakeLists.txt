@@ -15,10 +15,6 @@ set(PROJECT_VERSION_MAJOR 0)
 set(PROJECT_VERSION_MINOR 0)
 set(PROJECT_VERSION_PATCH 0)
 
-set(ROOT_DIR /data/subversions/git/github/pomadchin/PDAL)
-include(${ROOT_DIR}/cmake/common.cmake NO_POLICY_SCOPE)
-include(${ROOT_DIR}/cmake/compiler_options.cmake)
-
 # pdal requires to use cpp11
 set(CMAKE_CXX_FLAGS "-std=c++11")
 # set(CMAKE_MACOSX_RPATH 1)
@@ -35,18 +31,10 @@ find_package(PDAL 1.0.0 REQUIRED CONFIG)
 include_directories(.)
 include_directories(include)
 include_directories(${JNI_INCLUDE_DIRS})
-include_directories(/usr/local/Cellar/libxml2/2.9.4/include/libxml2)
-# include_directories(/data/pdal-build/include)
+include_directories(/usr/local/opt/libxml2/include/libxml2)
+# include_directories(/usr/local/opt/pdal)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
-# add_library(pdal_plugin_java_jni SHARED *.cpp)
-# target_link_libraries(pdal_plugin_java_jni PRIVATE ${PDAL_LIBRARIES})
-
-# include_directories(/usr/include/libxml2)
-# include_directories(/data/subversions/git/github/pomadchin/PDAL)
-# include_directories(/data/subversions/git/github/pomadchin/PDAL/include)
-# include_directories(/data/subversions/git/github/pomadchin/PDAL/src)
-# include_directories(/data/pdal-build/include)
 
 # Sources
 file(GLOB LIB_SRC
@@ -61,4 +49,4 @@ file(GLOB LIB_SRC
 set (LIB_NAME ${PROJECT_NAME}${PROJECT_VERSION_MAJOR})
 add_library(${LIB_NAME} SHARED ${LIB_SRC})
 install(TARGETS ${LIB_NAME} LIBRARY DESTINATION .)
-target_link_libraries(${LIB_NAME} PRIVATE ${PDAL_LIBRARIES})
+target_link_libraries(${LIB_NAME} PRIVATE pdalcpp)
