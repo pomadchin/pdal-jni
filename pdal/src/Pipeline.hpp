@@ -26,6 +26,7 @@ public:
     inline const char* getJSON() const { return m_json.c_str(); }
     inline const char* getSchema() const { return m_schema.c_str(); }
     pdal::PointViewSet getArrays() const;
+    inline int test() const { return 22; }
 
 private:
     std::string m_json;
