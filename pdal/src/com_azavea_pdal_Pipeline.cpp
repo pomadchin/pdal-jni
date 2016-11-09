@@ -29,11 +29,8 @@ JNIEXPORT void JNICALL Java_com_azavea_pdal_Pipeline_execute
 JNIEXPORT jint JNICALL Java_com_azavea_pdal_Pipeline_test
   (JNIEnv *env, jobject obj)
 {
-    /* Get a reference to obj's class */
-    //jclass cls = (*env)->GetObjectClass(env, obj);
-
+    std::cout << "Hello from C!" << std::endl;
     std::cout << getJsonField(env, obj) << std::endl;
-    //printf(getJsonField(env, obj));
-    printf("Hello from C!\n");
-    return 3;
+    Pipeline *p = getHandle<Pipeline>(env, obj);
+    return p->test();
 }
