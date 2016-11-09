@@ -9,6 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     com_azavea_pdal_Pipeline
+ * Method:    initialise
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_azavea_pdal_Pipeline_initialise
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_azavea_pdal_Pipeline
  * Method:    execute
  * Signature: ()V
  */
