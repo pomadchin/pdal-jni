@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include "com_azavea_pdal_Pipeline.h"
 #include "Pipeline.hpp"
-#include "handle.h"
+#include "accessors.h"
 
 using libpdaljava::Pipeline;
 
 JNIEXPORT void JNICALL Java_com_azavea_pdal_Pipeline_initialise
   (JNIEnv *env, jobject obj)
 {
-    setHandle(env, obj, new Pipeline(getJsonField(env, obj)));
+    setHandle(env, obj, new Pipeline(getJson(env, obj)));
 }
 
 JNIEXPORT void JNICALL Java_com_azavea_pdal_Pipeline_dispose
@@ -30,7 +30,7 @@ JNIEXPORT jint JNICALL Java_com_azavea_pdal_Pipeline_test
   (JNIEnv *env, jobject obj)
 {
     std::cout << "Hello from C!" << std::endl;
-    std::cout << getJsonField(env, obj) << std::endl;
+    std::cout << getJson(env, obj) << std::endl;
     Pipeline *p = getHandle<Pipeline>(env, obj);
     return p->test();
 }

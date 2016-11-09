@@ -1,4 +1,4 @@
-# Operating System Files
+# Operating System Files #
 
 *.DS_Store
 Thumbs.db
@@ -23,7 +23,7 @@ build/
 *.iws
 *.idea
 
-# Spring Bootstrap artifacts
+# Spring Bootstrap artifacts #
 
 dependency-reduced-pom.xml
 README.html
@@ -31,3 +31,7 @@ README.html
 # Sublime files #
 
 *.sublime-workspace
+
+# Test data files #
+
+data

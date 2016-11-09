@@ -22,7 +22,7 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
     env->SetLongField(obj, getHandleField(env, obj), handle);
 }
 
-std::string getJsonField(JNIEnv *env, jobject obj)
+std::string getJson(JNIEnv *env, jobject obj)
 {
     jclass c = env->GetObjectClass(obj);
     jfieldID fid = env->GetFieldID(c, "json", "Ljava/lang/String;");
