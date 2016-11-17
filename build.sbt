@@ -1,6 +1,7 @@
 name := "pdal-jni"
 version := "0.1.0-SNAPSHOT"
 scalaVersion := "2.11.8"
+crossScalaVersions := Seq("2.12.0", "2.11.8")
 organization := "com.azavea"
 scalacOptions ++= Seq(
   "-deprecation",
@@ -13,13 +14,13 @@ scalacOptions ++= Seq(
   "-language:existentials",
   "-feature")
 
-lazy val root = (project in file(".")).aggregate(core, native)
+resolvers += Resolver.bintrayRepo("daunnc", "maven")
 
-lazy val core = (project in file("core")).
-  settings(libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test").
-  settings(target in javah := (sourceDirectory in nativeCompile in native).value / "include").
-  dependsOn(native % Runtime)
+fork := true
 
-lazy val native = (project in file("native")).
-  settings(sourceDirectory in nativeCompile := sourceDirectory.value).
-  enablePlugins(JniNative)
+javaOptions += "-Djava.library.path=/usr/local/lib"
+
+libraryDependencies ++= Seq(
+  "io.pdal" %% "pdal" % "1.4.0-M0",
+  "org.scalatest"  %% "scalatest" % "3.0.0"  % "test"
+)
