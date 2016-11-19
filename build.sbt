@@ -21,6 +21,6 @@ fork := true
 javaOptions += "-Djava.library.path=/usr/local/lib"
 
 libraryDependencies ++= Seq(
-  "io.pdal" %% "pdal" % "1.4.0-M0",
+  "io.pdal" %% "pdal" % "1.4.0-M1",
   "org.scalatest"  %% "scalatest" % "3.0.0"  % "test"
 )
