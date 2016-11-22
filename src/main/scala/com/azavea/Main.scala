@@ -3,6 +3,7 @@ package com.azavea
 import io.pdal.Pipeline
 
 object Main {
+  // to check laz "filename":"data/autzen_trim.laz"
   val json =
     """
       |{
