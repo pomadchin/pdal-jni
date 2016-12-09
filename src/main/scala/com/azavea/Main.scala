@@ -11,6 +11,10 @@ object Main {
       |    {
       |      "filename":"data/1.2-with-color.las",
       |      "spatialreference":"EPSG:2993"
+      |    },
+      |    {
+      |      "type": "filters.reprojection",
+      |      "out_srs": "EPSG:4326"
       |    }
       |  ]
       |}
