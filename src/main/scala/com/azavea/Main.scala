@@ -14,7 +14,7 @@ object Main {
       |    },
       |    {
       |      "type": "filters.reprojection",
-      |      "out_srs": "EPSG:4326"
+      |      "out_srs": "EPSG:3857"
       |    }
       |  ]
       |}

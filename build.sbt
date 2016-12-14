@@ -14,13 +14,16 @@ scalacOptions ++= Seq(
   "-language:existentials",
   "-feature")
 
-resolvers += Resolver.bintrayRepo("pdal", "maven")
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("releases"),
+  Resolver.sonatypeRepo("snapshots")
+)
 
 fork := true
 
 javaOptions += "-Djava.library.path=/usr/local/lib"
 
 libraryDependencies ++= Seq(
-  "io.pdal" %% "pdal" % "1.4.0-M8",
+  "io.pdal" %% "pdal" % "1.4.0-SNAPSHOT",
   "org.scalatest"  %% "scalatest" % "3.0.0"  % "test"
 )
