@@ -17,13 +17,13 @@ scalacOptions ++= Seq(
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
   Resolver.sonatypeRepo("snapshots")
-)
+ )
 
 fork := true
 
 javaOptions += "-Djava.library.path=/usr/local/lib"
 
 libraryDependencies ++= Seq(
-  "io.pdal" %% "pdal" % "1.4.0-SNAPSHOT",
+  "io.pdal" %% "pdal" % "1.4.0",
   "org.scalatest"  %% "scalatest" % "3.0.0"  % "test"
 )
