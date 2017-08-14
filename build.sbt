@@ -1,7 +1,7 @@
 name := "pdal-jni"
 version := "0.1.0-SNAPSHOT"
-scalaVersion := "2.11.8"
-crossScalaVersions := Seq("2.12.0", "2.11.8")
+scalaVersion := "2.11.11"
+crossScalaVersions := Seq("2.12.3", "2.11.11")
 organization := "com.azavea"
 scalacOptions ++= Seq(
   "-deprecation",
@@ -12,7 +12,8 @@ scalacOptions ++= Seq(
   "-language:higherKinds",
   "-language:postfixOps",
   "-language:existentials",
-  "-feature")
+  "-feature"
+)
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
@@ -24,6 +25,7 @@ fork := true
 javaOptions += "-Djava.library.path=/usr/local/lib"
 
 libraryDependencies ++= Seq(
-  "io.pdal" %% "pdal" % "1.4.0",
-  "org.scalatest"  %% "scalatest" % "3.0.0"  % "test"
+  "io.pdal" %% "pdal" % "1.4.1-SNAPSHOT",
+  "io.pdal" %% "pdal-scala" % "1.4.1-SNAPSHOT",
+  "org.scalatest"  %% "scalatest" % "3.0.3"  % "test"
 )
